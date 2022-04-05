@@ -1,5 +1,7 @@
 ---
-title: "Educano ultimate!"
+title: "Educano Resources"
 ---
 
-First steps toward a GitHub Pages site, for posting FreeCodeCamp stuff and other such things.
+[Please click here for the main page.](https://sparkysmitty.github.io/educano/index.html)
+
+
