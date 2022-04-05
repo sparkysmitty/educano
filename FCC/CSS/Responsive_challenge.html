@@ -1,236 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <!-- info on next line: https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- icon for page and google fonts -->
-    <link rel="shortcut icon" type="image/x-icon" href="fred4.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- a medieval/nazi-like font, with a complement, for impact -->
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@500&family=Nova+Cut&display=swap" rel="stylesheet">
 
-    <title>FRED</title>
-
-    <style>
-    /* global page stuff */
-    :root {
-        /* used to change the title and captions based upon the device size */
-        --size: "not-set-yet"; 
-        --text1: 10px;
-        --text2: 20px;
-        --text3: 30px;
-        --text4: 40px;
-    }
+  <title>Ukraine_Invasion_2022</title>
+  <style>
+    
     html {
-          /* set height to 100% to get background to cover entire page */
-          height: 100%;
-          background: rgb(73,42,2);
-          background: linear-gradient(0deg, rgba(73,42,2,1) 12%, rgba(166,184,165,1) 100%);
+      /* set base font for easier rem calcs 1rem === 10px, 1.5rem === 15px, etc */
+      font-size: 10px;
     }
 
-    /* for the titles and captions */
-    .hidden_by_default {
-      /* default setting, turned on as necessary */
-      display: none;
+    body {
+      font-family: serif;
+      font-size: 1.6rem;
+      line-height: 1.5;
+      text-align: center;
+      margin: 0;
+      background-color: rgba(7, 49, 5, 0.7);
     }
-    .txtover { 
-      position: relative 
+
+    #main {
+      margin: 0px;
+      padding: 0px;
+      border-radius: 0;
+    }
+
+    /* changing things related to 'img' requires constant FCC-test suite re-checking!! */
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+      margin: 0;
+    }
+
+    #img-div {
+      padding: 0;
+      margin: 0;
     } 
-    /* main title */
-    .txtover .title { 
+
+    #img-caption {
+      padding: 2em;
+      font-family: 'Josefin Slab', serif;
+    }
+
+    @media (max-width: 460px) {
+      #img-caption {
+        font-weight: 200;
+        font-size: 1.4rem;
+      }
+    }
+
+    blockquote {
+      padding: 1rem;
+      margin: 0;
+      text-align: center;
+      font-family: 'Josefin Slab', serif;
+      font-style: italic;
+      background:rgba(7, 49, 5, 0.7);
+      color: whitesmoke;
+    }
+
+    blockquote cite {
+      font-style: normal;
+    }
+    
+    .tribute_link_background {
+      padding: 1.5em;
+      text-align: center;
+      font-family: 'Nova Cut', cursive;
+      font-size: 2rem;
+      /* background:rgba(7, 49, 5, 0.7); */
+    }
+
+    #main_title{ 
       position: absolute; 
       top: 0; 
       left: 0;
       box-sizing: border-box;
+      /* designed to underlay sub_title section, for homogenous backgrounds */
+      height: 85px;
       width: 100%;
-      padding: 10px;
-      color: yellow;
+      padding: 0px;
       text-align: center;
-      font-family: Gluten, sans-serif;
-      font-size: 40px;
-      background:rgba(166,184,165,0.7)
+      font-family: 'Nova Cut', cursive;
+      font-size: 4rem;
+      background:rgba(166,184,165,0.7);
+      color: yellow;
     }
-   
-    /* main description */
-    .txtover .middlecaption { 
+
+    #sub_title{ 
       position: absolute; 
-      /* bottom: 0; */
-      top: 70%; 
-      left: 15;
+      top: 54px; 
+      left: 0;
       box-sizing: border-box;
       width: 100%;
       padding: 2px;
-      color: yellow;
-      text-align: left;
-      font-family: Nunito, sans-serif;
-      /* for some unknown reason if this is set here it is not overridden below!??, 
-      /* font-size: 12px; */
-      background:rgba(166,184,165,0.7)
-    }
-   
-    .txtover .bottomcaption {
-      position: absolute; 
-      bottom: 0; 
-      right: 0;
-      box-sizing: border-box;
-      width: 100%;
-      padding: 10px;
-      color: rgb(0, 153, 255);
       text-align: center;
-      font-family: Nunito, sans-serif;
-      background: rgba(0, 0, 0, 0.6);
+      font-family: 'Josefin Slab', serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+      /* 'borrowing' the background color from the main title, eliminates overlapping issues */
+      color: rgb(190, 13, 13);
     }
-    .txtover .bottomcaption a:link,
-    .txtover .bottomcaption a:active,
-    .txtover .bottomcaption a:visited,
-    .txtover .bottomcaption a:hover {color: #fff;}
 
-    .txtover #originalfred { 
-      position: absolute; 
-      top: 80%; 
-      left: 10;
-      box-sizing: border-box;
+    #img-caption{
       width: 100%;
-      padding: 2px;
+      padding: 0;
+      margin: 0;
+      /* background:rgba(7, 49, 5, 0.7); */
       color: yellow;
-      text-align: center;
-      font-family: Nunito, sans-serif;
-      font-size: 20px;
-    }
-    /* for the picture */
-    img {
-      width: 100%;
-      /* this gets the picture on the screen vertically centered */
-      /* next line is so wrong -- must be set to 'auto' to pass user tests, but screws it up -- 90vh is correct... */
-      height: 90vh;
-      /* height: auto; */
-      /* without these lines the image distorts... */
-      object-fit: contain;
-      /* object-fit: scale-down; */
-      object-position: center;
-      /* these properties are apparently only necessary to meet user story #8, are functionally redundant */
-      display: block;
-      max-width: 100%;
     }
 
-    /* for the captions  */
-    /* using spans to swap different text is apparently best way to shift content using css. */
-
-    /* media queries to automatically size and move around */
-    /* large devices  */
-    @media only screen and (min-width: 850px) {
-      :root {--size: "Large";}
-      #image {
-        content:url("fred1-large.jpg");
+    /* fcc example code used this size partioning so keeping it up */
+    @media (max-width: 460px) {
+      #main_title {
+        font-size: 2rem;
+        height: 60px;
       }
-      #large_title {
-        font-size: var(--text4);
-        display: block
+      #sub_title {
+        top: 38px;
+        font-size: 1.24rem;
       }
-      .middlecaption {
-        font-size: var(--text3);
+      #img-caption {
+        font-size: 1rem;
       }
-      .bottomcaption {
-        font-size: var(--text2);
-      }
-
+      .tribute_link_background {
+      padding: 2em;
+      font-size: 1.5rem;
+      /* background:rgba(7, 49, 5, 0.7); */
     }
 
-    /* medium devices  */
-    @media only screen and (min-width: 551px) and (max-width: 849px) {
-      :root {--size: "Medium";}
-      #image {
-        content:url("fred1-medium.jpg");
-      }
-      #medium_title {
-        font-size: var(--text3);
-        display: block;
-        font-size: var(--text1);
-      }
+
+
+      /* 
+          working on making crop work correctly whilst still getting FCC 'user stories' tests to pass.
+          could use separate images, but would prefer to hotlink master image live from wikimedia.
+          see problems below...
+      */
+      /* .crop {
+        width: 300px;
+        height: 350px;
+        overflow: hidden;
+      } */
+      /*  fails 2 of the tests... 
+          1) <img> "Should responsively resize, relative to the width of its parent, without exceeding its original size."
+          2) "Image is not centered: expected -100 to be close to 100 +/- 11"
+
+          note: it's the negative margins below that allow you to pick out a section of the image, with the crop above.
+          note2: can't use vw on top-level for height either... hmm... 
+      */
+      /* .crop img {
+        width: 200px;
+        height: 300px;
+        margin: -77px 0 0 -100px;
+      } */
     }
 
-    /* small devices */
-    @media only screen and (min-width: 260px) and (max-width: 550px) {
-      :root {--size: "Small";}
-      #image {
-        content:url("fred1-small.jpg");
-      }
-      #small_title {
-        font-size: var(--text2);
-        display: block
-      }
-      .middlecaption {
-        font-size: var(--text1);
-      }
-      .bottomcaption {
-        font-size: var(--text1);
-      }
-    }
-
-    @media only screen and (max-width: 259px) {
-      /* :root {--size: "Tiny";} */
-      #image {
-        content:url("fredflintstone.jpg");
-      }
-      #tiny_title {
-        font-size: var(--text2);
-        display: block
-      }
-      .bottomcaption {
-        display: none;
-      }
-      .middlecaption {
-        display: none;
-      }
-      #originalfred {
-        font-size: var(--text1);
-        display: block
-      }
-
-    }
-
-    #img-div {
-      display: grid;
-      /* shorthand for combining align-items and justify-content: */
-      place-items: center;
-    }
-
-    /* used during dev to verify media query settings... */
-    /* #title::after {
-      content: var(--size);
-    } */
-
-    </style>
-
+  </style>
 </head>
 <body>
 
-  <script defer src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-
-  <main id="main">
-    <div id="img-div">  <!-- necessary to meet 'user story #3'-->
-    <figure class="txtover" id="image-fig"> 
-      <!-- start with the smallest possible image, media queries take over then... -->
-      <img id="image" src="fredflintstone.jpg" alt="Fred is about to make a big splash!"> 
-      <div id="title" class="title">
-        <span class="hidden_by_default" id="large_title">Our Super Friend: Fred</span>
-        <span class="hidden_by_default"  id="medium_title">Just Normal Fred</span>
-        <span class="hidden_by_default"  id="small_title">Our Small Friend Fred</span>
-        <span class="hidden_by_default"  id="tiny_title">The Original Fred</span>
-      </div>
-      <div class="middlecaption" id="tribute-info">
-        Known for his fanciful costumes with eccentric designs, 
-        he floated across the world spreading joy.
-      </div>
-      <div class="bottomcaption" id="img-caption">
-        Fred spotted by 
-        <a id="tribute-link" href="https://unsplash.com/@kutyawka" target="_blank">Ekaterina Kuznetsova</a>
-      </div>
-      <span class="hidden_by_default"  id="originalfred">Yaba Daba Doo!</span>
-    </figure>
+<!-- some of these elements are only required to pass the FCC code suite -->
+<main id="main">
+  <figure id="img-div" class="crop">
+    <div id="title" class="title">
+      <span id="main_title">Freedom Pummelled!</span>
+      <span id="sub_title">A nuclear power brutalizes a fledgling democracy</span>
     </div>
-  </main>
+    <!-- note: hot-linking wikimedia by inserting Special:FilePath into path, very useful -->
+    <img
+      id="image"
+      src="https://en.wikipedia.org/wiki/Special:FilePath/Ukrainian_civilians_and_soldiers_take_shelter_under_a_bridge_in_Kyiv.jpg"
+      alt="Ukranians taking shelter under a bridge during Russian invasion."
+    />
+    <figcaption id="img-caption">
+      Ukranian citizens and soliders taking shelter under a bridge in Irpin, Ukraine during the 2022 Russian invasion.
+    </figcaption>
+  </figure>
+  <section id="tribute-info">
+    <blockquote cite="https://en.wikipedia.org/wiki/Sean_Penn#2022_Russian_invasion_of_Ukraine">
+      <p>
+        "Ukraine is the tip of the spear for the democratic embrace of dreams. 
+        If we allow it to fight alone, <b>our soul as America is lost.</b>”
+      </p>
+      <cite>Sean Penn, 2021, after fleeing Ukraine by foot</cite>
+    </blockquote>
+     <div class="tribute_link_background">
+      <a id="tribute-link"
+        href="https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine"
+        target="_blank" >This Information Is Banned in Russia</a
+      >
+     </div>
+  </section>
+</main>
+
+<!-- a shadow dom'd instance of the FreeCodeCamp testing suites, provided by FCC  -->
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 
 </body>
 </html>
