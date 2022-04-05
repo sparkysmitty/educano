@@ -1,2 +1,3 @@
 # educano
-Various education-related projects
+
+Education-related projects wrapper.
